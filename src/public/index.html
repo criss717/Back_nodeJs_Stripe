@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chekout</title>
+</head>
+<body>
+    <button id="button">Pay</button>
+    <script>
+        const button=document.getElementById('button')
+        button.addEventListener('click',async ()=>{
+            const response= await fetch('/create-checkout-session',{
+                method:'POST',
+                //aqui se mandaria el json por body
+            })
+            const data=await response.json()
+            console.log(data);
+            window.location.href=data.url // redirecciona a la URL q nos da el back en data.url, eso nos lo da stripe
+        })
+    </script>
+</body>
+</html>
